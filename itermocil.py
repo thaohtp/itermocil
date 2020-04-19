@@ -50,7 +50,7 @@ class Itermocil(object):
 
         # Open up the file and parse it with PyYaml
         with open(self.file, 'r') as f:
-            self.parsed_config = yaml.load(f)
+            self.parsed_config = yaml.safe_load(f)
 
         # This will be where we build up the script.
         self.applescript = []
