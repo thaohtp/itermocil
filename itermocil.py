@@ -445,16 +445,15 @@ class Itermocil(object):
         if name:
             name_command = 'set name to "' + name + '"'
 
-        # Turn commands list into a string command
-        command = "; ".join(commands)
-
-        # Build the applescript snippet.
-        self.applescript.append(
-            ''' tell {tell_target}
-                    write text "{command}"
-                    {name}
-                end tell
-            '''.format(tell_target=tell_target, command=command, name=name_command))
+        # Run each command separately
+        for command in commands:
+            # Build the applescript snippet.
+            self.applescript.append(
+                ''' tell {tell_target}
+                        write text "{command}"
+                        {name}
+                    end tell
+                '''.format(tell_target=tell_target, command=command, name=name_command))
 
     def initiate_window(self, commands=None):
         """ Runs the list of commands in the current pane
